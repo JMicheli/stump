@@ -1,0 +1,8 @@
+[package]
+name = "config_macro"
+version = "0.0.1"
+edition = "2021"
+description = "Provides a procedural macro for transforming a simple config struct definition into a functional environment/toml loader."
+
+[lib]
+proc-macro = true

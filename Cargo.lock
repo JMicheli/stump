@@ -902,6 +902,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "config_macro"
+version = "0.0.1"
+
+[[package]]
 name = "connection-string"
 version = "0.1.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
