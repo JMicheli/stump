@@ -1,23 +1,19 @@
 use std::path::PathBuf;
 
-use crate::utils::{init_test, TempLibrary};
-
 use stump_core::{
-	db::models::Epub,
-	fs::media_file::epub::{
-		get_epub_chapter, get_epub_resource, normalize_resource_path,
-	},
-	prelude::{ContentType, CoreResult, Ctx},
-	prisma::media,
+	db::entity::Epub, filesystem::ContentType, prisma::media, CoreResult, Ctx,
 };
 
+mod utils;
+use utils::{init_test, TempLibrary};
+
 #[tokio::test]
-async fn can_make_epub_struct() -> CoreResult<()> {
+async fn test_can_make_epub_struct() -> CoreResult<()> {
 	init_test().await;
 
 	let ctx = Ctx::mock().await;
 
-	let _ret = TempLibrary::epub_library(ctx.get_db()).await?;
+	let _ret = TempLibrary::epub_library(&ctx.db).await?;
 
 	let fetch_epub = ctx
 		.db
@@ -37,12 +33,12 @@ async fn can_make_epub_struct() -> CoreResult<()> {
 }
 
 #[tokio::test]
-async fn can_get_resource() -> CoreResult<()> {
+async fn test_can_get_resource() -> CoreResult<()> {
 	init_test().await;
 
 	let ctx = Ctx::mock().await;
 
-	let _ret = TempLibrary::epub_library(ctx.get_db()).await?;
+	let _ret = TempLibrary::epub_library(&ctx.db).await?;
 
 	let fetch_epub = ctx
 		.db
@@ -75,7 +71,7 @@ async fn can_get_resource() -> CoreResult<()> {
 }
 
 #[test]
-fn canonical_correction() {
+fn test_canonical_correction() {
 	let invalid = PathBuf::from("OEBPS/../Styles/style.css");
 
 	let expected = PathBuf::from("OEBPS/Styles/style.css");
@@ -86,11 +82,11 @@ fn canonical_correction() {
 }
 
 #[tokio::test]
-async fn can_get_chapter() -> CoreResult<()> {
+async fn test_can_get_chapter() -> CoreResult<()> {
 	init_test().await;
 
 	let ctx = Ctx::mock().await;
-	let _ret = TempLibrary::epub_library(ctx.get_db()).await?;
+	let _ret = TempLibrary::epub_library(&ctx.db).await?;
 
 	let fetch_epub = ctx
 		.db

@@ -673,8 +673,8 @@ mod tests {
 	}
 
 	fn get_mock_config_file() -> String {
-		let mock_config_path = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-			.join("integration-tests/data/mock-stump.toml");
+		let mock_config_path =
+			PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("tests/data/mock-stump.toml");
 
 		fs::read_to_string(mock_config_path).expect("Failed to fetch mock config file")
 	}
