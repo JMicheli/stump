@@ -51,12 +51,14 @@ uuid = "1.8.0"
 regex = "1.10.4"
 alphanumeric-sort = "1.5.3"
 
+chrono = { version = "0.4.37", features = ["serde"] }
+
 [dev-dependencies]
 tempfile = { workspace = true }
 criterion = { version = "0.5.1", features = ["html_reports", "async_tokio"] }
 
 [build-dependencies]
-chrono = "0.4.37"
+chrono = "0.4.38"
 
 [target.'cfg(target_os = "linux")'.dependencies]
 libc = "0.2.152"

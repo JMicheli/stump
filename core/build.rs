@@ -1,4 +1,4 @@
-use chrono::prelude::{DateTime, Utc};
+use chrono::{DateTime, Utc};
 use std::{process::Command, time::SystemTime};
 
 fn main() {
